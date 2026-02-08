@@ -20,19 +20,18 @@ const QUESTION_TEXT = "sahla will you marry me ?";
 // Method 3: Online video URL
 //   Upload your video to a hosting service and use the direct URL
 
-// Uncomment these lines if using Method 2 (import from assets):
-// import valentinesVideo from './assets/valentines-video.mp4';
-// const VIDEO_SOURCE = valentinesVideo;
+// Importing the Valentine's Day video from assets folder
+import valentinesVideo from './assets/Untitled design.mp4';
 
-// Current: Using a sample video (REPLACE WITH YOUR VALENTINE'S DAY VIDEO)
-// 
-// EASIEST WAY: Place your video in the public/ folder and update below:
-// Example: const VIDEO_SOURCE = "/valentines-video.mp4";
-//
-// For now, using a sample video - replace with your romantic Valentine's Day video!
-const VIDEO_SOURCE = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+// Using the Valentine's Day video file for Sahla & Athas
+const VIDEO_SOURCE = valentinesVideo;
+
+///mple video - replace with your romantic Valentine's Day video!
+// const VIDEO_SOURCE = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
 function App() {
+
+
   const [showVideo, setShowVideo] = useState(false);
   const [showNoMessage, setShowNoMessage] = useState(false);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });

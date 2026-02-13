@@ -34,6 +34,8 @@ function App() {
 
   const [showVideo, setShowVideo] = useState(false);
   const [showNoMessage, setShowNoMessage] = useState(false);
+  const [showEmailPopup, setShowEmailPopup] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [isNoButtonMoved, setIsNoButtonMoved] = useState(false);
   const noButtonRef = useRef(null);
@@ -42,8 +44,10 @@ function App() {
   const returnTimeoutRef = useRef(null);
 
   const handleYesClick = async () => {
-    setShowVideo(true);
     setShowNoMessage(false);
+    
+    // Show popup message first
+    setShowEmailPopup(true);
     
     // Send email notification via Netlify Function
     try {
@@ -61,14 +65,21 @@ function App() {
       
       const data = await response.json();
       if (data.success) {
+        setEmailSent(true);
         console.log('✅ Email sent successfully!');
       } else {
         console.error('❌ Failed to send email:', data.message);
       }
     } catch (error) {
       console.error('❌ Error sending email:', error);
-      // Don't block the video from showing if email fails
+      // Still show popup even if email fails
     }
+    
+    // After 3 seconds, hide popup and show video
+    setTimeout(() => {
+      setShowEmailPopup(false);
+      setShowVideo(true);
+    }, 3000);
   };
 
   const moveNoButton = () => {
@@ -194,6 +205,23 @@ function App() {
 
   return (
     <div className="app">
+      {/* Email Popup Message */}
+      {showEmailPopup && (
+        <div className="email-popup-overlay">
+          <div className="email-popup">
+            <div className="email-popup-content">
+              <h2 className="email-popup-title">💕 Email Sent! 💕</h2>
+              <p className="email-popup-message">
+                {emailSent 
+                  ? "Your response has been sent! Check his email at infobsc12@gmail.com. Congratulations! 🎉"
+                  : "Sending your response..."}
+              </p>
+              <div className="email-popup-hearts">💖💕💗💝💖</div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {showVideo ? (
         <div className="video-container">
           <div className="video-wrapper">

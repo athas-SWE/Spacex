@@ -163,6 +163,7 @@
   width: 100%;
   padding: 20px;
   margin-top: 20px;
+  touch-action: none;
 }
 
 .btn {

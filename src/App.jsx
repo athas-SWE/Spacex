@@ -125,21 +125,19 @@ function App() {
     const randomIndex = Math.floor(Math.random() * positionsToChoose.length);
     const newPosition = positionsToChoose[randomIndex];
     
-    // Small delay to ensure position is set before moving
-    setTimeout(() => {
-      setNoButtonPosition(newPosition);
-    }, 10);
+    // Move immediately (no delay for faster response)
+    setNoButtonPosition(newPosition);
     
     // Clear any existing timeout
     if (returnTimeoutRef.current) {
       clearTimeout(returnTimeoutRef.current);
     }
     
-    // Return to original position after 0.8 seconds
+    // Return to original position after 0.6 seconds (faster return)
     returnTimeoutRef.current = setTimeout(() => {
       setNoButtonPosition(originalPositionRef.current);
       setIsNoButtonMoved(false);
-    }, 800);
+    }, 600);
   };
 
   const handleNoMouseEnter = () => {
@@ -149,6 +147,7 @@ function App() {
   const handleNoTouchStart = (e) => {
     // Prevent default to avoid triggering click immediately
     e.preventDefault();
+    // Move immediately on touch for fast response
     moveNoButton();
   };
 
@@ -287,7 +286,7 @@ function App() {
                   position: isNoButtonMoved ? 'absolute' : 'static',
                   left: isNoButtonMoved ? `${noButtonPosition.x}px` : 'auto',
                   top: isNoButtonMoved ? `${noButtonPosition.y}px` : 'auto',
-                  transition: isNoButtonMoved ? 'all 0.1s ease-out' : 'all 0.15s ease-out',
+                  transition: isNoButtonMoved ? 'all 0.08s ease-out' : 'all 0.15s ease-out',
                   zIndex: isNoButtonMoved ? 10 : 1,
                   touchAction: 'manipulation'
                 }}

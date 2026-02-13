@@ -236,6 +236,8 @@ function App() {
             <video 
               controls 
               autoPlay 
+              playsInline
+              muted
               className="surprise-video"
               onError={(e) => {
                 console.error("Video error:", e);

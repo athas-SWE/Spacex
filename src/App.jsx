@@ -213,9 +213,12 @@ function App() {
               <h2 className="email-popup-title">💕 Email Sent! 💕</h2>
               <p className="email-popup-message">
                 {emailSent 
-                  ? "Your response has been sent! Check his email at infobsc12@gmail.com. Congratulations! 🎉"
+                  ? "Your response has been sent! Check his email at infobsc12@gmail.com"
                   : "Sending your response..."}
               </p>
+              {emailSent && (
+                <p className="email-popup-congrats">Congratulations! 🎉</p>
+              )}
               <div className="email-popup-hearts">💖💕💗💝💖</div>
             </div>
           </div>

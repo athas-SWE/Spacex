@@ -215,10 +215,17 @@
 .btn-no {
   background: linear-gradient(135deg, #95a5a6, #7f8c8d);
   color: white;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .btn-no:hover {
   box-shadow: 0 6px 20px rgba(127, 140, 141, 0.4);
+}
+
+.btn-no:active {
+  transform: scale(0.95);
 }
 
 /* Video Container */
@@ -414,6 +421,7 @@
 @media (max-width: 480px) {
   .question-text {
     font-size: 1.5rem;
+    padding: 0 1rem;
   }
   
   .btn {
@@ -423,9 +431,20 @@
     max-width: 200px;
   }
   
+  .question-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .buttons-container {
+    min-height: 250px;
+    padding: 15px;
+  }
+  
   .email-popup-content {
     min-width: 280px;
+    max-width: 90%;
     padding: 2rem 1.5rem;
+    margin: 0 1rem;
   }
   
   .email-popup-title {
@@ -433,6 +452,24 @@
   }
   
   .email-popup-message {
+    font-size: 1rem;
+  }
+  
+  .email-popup-congrats {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .video-wrapper {
+    margin: 1rem;
+    border-radius: 15px;
+  }
+  
+  .video-title {
+    font-size: 1.5rem;
+  }
+  
+  .video-subtitle {
     font-size: 1rem;
   }
 }

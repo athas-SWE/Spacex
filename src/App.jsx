@@ -146,6 +146,12 @@ function App() {
     moveNoButton();
   };
 
+  const handleNoTouchStart = (e) => {
+    // Prevent default to avoid triggering click immediately
+    e.preventDefault();
+    moveNoButton();
+  };
+
   const handleNoClick = (e) => {
     e.preventDefault();
     moveNoButton();
@@ -276,12 +282,14 @@ function App() {
                 className="btn btn-no"
                 onClick={handleNoClick}
                 onMouseEnter={handleNoMouseEnter}
+                onTouchStart={handleNoTouchStart}
                 style={{
                   position: isNoButtonMoved ? 'absolute' : 'static',
                   left: isNoButtonMoved ? `${noButtonPosition.x}px` : 'auto',
                   top: isNoButtonMoved ? `${noButtonPosition.y}px` : 'auto',
                   transition: isNoButtonMoved ? 'all 0.1s ease-out' : 'all 0.15s ease-out',
-                  zIndex: isNoButtonMoved ? 10 : 1
+                  zIndex: isNoButtonMoved ? 10 : 1,
+                  touchAction: 'manipulation'
                 }}
               >
                 No

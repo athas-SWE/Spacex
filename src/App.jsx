@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import './App.css'
 
 // Customize your question here
-const QUESTION_TEXT = "sahla will you marry me ?";
+const QUESTION_TEXT = "Sahla, will you be my Valentine? 💕";
 
 // Video source - Valentine's Day video for Sahla & Athas
 // 
@@ -41,9 +41,34 @@ function App() {
   const originalPositionRef = useRef({ x: 0, y: 0 });
   const returnTimeoutRef = useRef(null);
 
-  const handleYesClick = () => {
+  const handleYesClick = async () => {
     setShowVideo(true);
     setShowNoMessage(false);
+    
+    // Send email notification via Netlify Function
+    try {
+      // Use Netlify function endpoint (works both locally and in production)
+      const functionUrl = '/.netlify/functions/send-email';
+      const response = await fetch(functionUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipientEmail: 'infobsc12@gmail.com'
+        })
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        console.log('✅ Email sent successfully!');
+      } else {
+        console.error('❌ Failed to send email:', data.message);
+      }
+    } catch (error) {
+      console.error('❌ Error sending email:', error);
+      // Don't block the video from showing if email fails
+    }
   };
 
   const moveNoButton = () => {
